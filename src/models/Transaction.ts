@@ -18,7 +18,7 @@ class Transaction {
   @Column()
   title: string;
 
-  @Column('numeric')
+  @Column('decimal')
   value: number;
 
   @Column()
@@ -27,7 +27,7 @@ class Transaction {
   @Column()
   category_id: string;
 
-  @ManyToOne(() => Category)
+  @ManyToOne(() => Category, category => category.transaction, { eager: true })
   @JoinColumn({ name: 'category_id' })
   category: Category;
 
